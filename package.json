@@ -4,7 +4,7 @@
   "description": "Webpage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:e2e": "node test/index.js",
     "changelog": "conventional-changelog > CHANGELOG.md"
   },
   "repository": {
@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/MatchAndGo/web#readme",
   "devDependencies": {
-    "conventional-changelog-cli": "^2.0.21"
+    "conventional-changelog-cli": "^2.0.21",
+    "file-url": "^3.0.0",
+    "jest": "^24.8.0",
+    "puppeteer": "^1.15.0"
   }
 }
