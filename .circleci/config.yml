@@ -12,7 +12,7 @@ jobs:
       - image: circleci/node:10.15.1-jessie-browsers
     steps:
       - checkout
-      - restore_cache: # special step to restore the dependency cache
+      - restore_cache: # special step to restore the dependency cache 
           key: dependency-cache-{{ checksum "package.json" }}
       - run: npm install
       - save_cache: # special step to save the dependency cache
