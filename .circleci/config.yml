@@ -6,10 +6,23 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.3.1
 
-# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
+jobs:
+  test-e2e:
+    docker:
+      - image: circleci/node:10.15.1-jessie-browsers
+    steps:
+      - checkout
+      - restore_cache: # special step to restore the dependency cache 
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run: npm run test:e2e
+
 workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
+  version: 2
+  build_and_test:
     jobs:
-      - welcome/run
+      - test-e2e
